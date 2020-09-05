@@ -1,0 +1,39 @@
+XP 80000000
+
+Cat food 15000
+
+Cat food 45000
+
+Cat ticket 1000
+XP 10000000
+
+baby gao
+
+crazed cow cat
+
+speed up 2000
+rich cat 2000
+treasure radar 200
+cat cpu 2000
+
+bricks 150
+feathers 150
+coal 150
+sprockets 150
+gold 150
+meteorite 150
+beast bones 150
+catamin A 5
+catamin B 5
+catamin C 15
+
+Bora
+Mizli
+lumina
+
+green catfruit 10
+purple catfruit 10
+yellow catfruit 10
+red catfruit 10
+blue catfruit 10
+epic catfruit 5

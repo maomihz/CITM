@@ -9,7 +9,20 @@ nohup sh cats.sh 2 "7 6 8 9 10 5 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7
 nohup sh cats.sh 2 "7 6 8 9 10 5 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10" yes
 
 # Speed cat (Avg 26s)
-nohup sh cats.sh 8 "5 6 6 6 6 6 6 6 6 6 6 5 5 5 5 8 10 8 10 8 10 8 10 8 10 8 10 8 10 8 10 8 10 8 10 8 10 8 10 8 10 8 10 5"
+# nohup sh cats.sh 8 "5 6 6 6 6 6 6 6 6 6 6 5 5 5 5 8 10 8 10 8 10 8 10 8 10 8 10 8 10 8 10 8 10 8 10 8 10 8 10 8 10 8 10 5"
+nohup sh cats.sh 8 "7 6 6 6 6 6 6 6 6 6 9 9 9 9 9 9 9 9 8 10 9 10 9 7 10 9 7 10 9 7 10 9 7 10 9 7 10 9 7 10 9 7 10 9 7 10 9 7 10 9 7 10 9 7 10 9 10"
+
+# Speed cat blitz
+nohup sh cats.sh 5 "6 7 8 9" strict
+
+# Sweet XP
+sh cats.sh 2 "7 6 8 9 10" strict
+
+# Meteorite stage (171/hr)
+sh cats.sh 6 "6 7 9 10 9 10"
+
+# Torture room
+sh cats.sh 18 "8 6 9 10"
 
 # Collab event
 #nohup sh cats.sh 6 "6 6 6 6 6 u u 10 10 10 10 10 10 10 10 10 10 10 8 8 8 8 8 8 8 8 8 8"

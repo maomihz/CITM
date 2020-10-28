@@ -2,27 +2,29 @@
 #sh cats.sh 8 "8 9 10 5 9 10 5 9 10 5 9 10 5 9 10 5 8 8 8 8 8 8 8 8 8 8"
 #nohup sh cats.sh 8 "8 6 7 8 7 8 7 8 5 7 8 7 8 7 8 7 8 7 8 7 8 7 8 7 8 7 8"
 
-# Siege of hippoe (Avg 50s +speed)
+# Siege of hippoe (95/hr+speed)
 # strict
-nohup sh cats.sh 2 "7 6 8 9 10 5 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10" strict
+nohup sh cats.sh --strict-timezone -c 2 -d 3 7 6 9 10 6 7 9 10 6 7 9 10 6 7 9 10 6 7 9 10 6 7 9 10 9 10 9 10 8 9 10 9 10
 # yes
-nohup sh cats.sh 2 "7 6 8 9 10 5 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10" yes
+nohup sh cats.sh --strict-timezone -c 2 -d 3 7 6 9 10 6 7 9 10 6 7 9 10 6 7 9 10 6 7 9 10 6 7 9 10 9 10 9 10 8 9 10 9 10
+# nohup sh cats.sh 2 "7 6 8 9 10 5 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 5" yes
 
-# Speed cat (Avg 26s)
-# nohup sh cats.sh 8 "5 6 6 6 6 6 6 6 6 6 6 5 5 5 5 8 10 8 10 8 10 8 10 8 10 8 10 8 10 8 10 8 10 8 10 8 10 8 10 8 10 8 10 5"
-nohup sh cats.sh 8 "7 6 6 6 6 6 6 6 6 6 9 9 9 9 9 9 9 9 8 10 9 10 9 7 10 9 7 10 9 7 10 9 7 10 9 7 10 9 7 10 9 7 10 9 7 10 9 7 10 9 7 10 9 7 10 9 10"
+# Speed cat +$1300 (152/hr)
+nohup sh cats.sh -c 8 -d 7 7 7 7 7 7 7 6 6 6 6 6 6 6 6 6 9 9 9 9 9 9 9 9 10 8 10 8 10 8 9 10 8 10 8 10 8 10 8 9
 
-# Speed cat blitz
-nohup sh cats.sh 5 "6 7 8 9" strict
+# Speed cat blitz (105/hr,8-9,12-13,19-20)
+nohup sh cats.sh -zs -c 5 -d 6 7 8 9
 
-# Sweet XP
-sh cats.sh 2 "7 6 8 9 10" strict
+# Sweet XP (120/hr+speed)
+# M11-12,22-23 T8-9,19-20 W13-14,21-22
+# T12-13,20-21 F11-12,17-18
+sh cats.sh -zs -c 2 -d 7 6 8 9 10
 
 # Meteorite stage (171/hr)
-sh cats.sh 6 "6 7 9 10 9 10"
+sh cats.sh -c 6 -d 6 7 9 10 9 10
 
 # Torture room
-sh cats.sh 18 "8 6 9 10"
+sh cats.sh -c 18 -d 8 6 9 10
 
 # Collab event
 #nohup sh cats.sh 6 "6 6 6 6 6 u u 10 10 10 10 10 10 10 10 10 10 10 8 8 8 8 8 8 8 8 8 8"

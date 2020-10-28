@@ -1,13 +1,6 @@
-# Slim to victory
-#sh cats.sh 8 "8 9 10 5 9 10 5 9 10 5 9 10 5 9 10 5 8 8 8 8 8 8 8 8 8 8"
-#nohup sh cats.sh 8 "8 6 7 8 7 8 7 8 5 7 8 7 8 7 8 7 8 7 8 7 8 7 8 7 8 7 8"
-
 # Siege of hippoe (95/hr+speed)
-# strict
 nohup sh cats.sh --strict-timezone -c 2 -d 3 7 6 9 10 6 7 9 10 6 7 9 10 6 7 9 10 6 7 9 10 6 7 9 10 9 10 9 10 8 9 10 9 10
-# yes
-nohup sh cats.sh --strict-timezone -c 2 -d 3 7 6 9 10 6 7 9 10 6 7 9 10 6 7 9 10 6 7 9 10 6 7 9 10 9 10 9 10 8 9 10 9 10
-# nohup sh cats.sh 2 "7 6 8 9 10 5 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 6 7 8 9 10 5" yes
+nohup sh cats.sh --fix-timezone -c 2 -d 3 7 6 9 10 6 7 9 10 6 7 9 10 6 7 9 10 6 7 9 10 6 7 9 10 9 10 9 10 8 9 10 9 10
 
 # Speed cat +$1300 (152/hr)
 nohup sh cats.sh -c 8 -d 7 7 7 7 7 7 7 6 6 6 6 6 6 6 6 6 9 9 9 9 9 9 9 9 10 8 10 8 10 8 9 10 8 10 8 10 8 10 8 9
@@ -25,6 +18,10 @@ sh cats.sh -c 6 -d 6 7 9 10 9 10
 
 # Torture room
 sh cats.sh -c 18 -d 8 6 9 10
+
+# Slim to victory
+#sh cats.sh 8 "8 9 10 5 9 10 5 9 10 5 9 10 5 9 10 5 8 8 8 8 8 8 8 8 8 8"
+#nohup sh cats.sh 8 "8 6 7 8 7 8 7 8 5 7 8 7 8 7 8 7 8 7 8 7 8 7 8 7 8 7 8"
 
 # Collab event
 #nohup sh cats.sh 6 "6 6 6 6 6 u u 10 10 10 10 10 10 10 10 10 10 10 8 8 8 8 8 8 8 8 8 8"

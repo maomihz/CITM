@@ -44,7 +44,8 @@ key() {
 
 help() {
     echo $@
-    echo "$0 <repeat> <energytype> <deploy_pattern> <fix_timezone>"
+    echo "$0 [-c | --count <repeat>] [-d | --deploy <deploy_pattern>] [-z | --fix-timezone] [-zs | --strict-timezone]"
+    echo "        [-n | --limit <clear_limit>]"
     exit 0
 }
 
@@ -234,6 +235,7 @@ reset_state() {
 
 click_ticket() {
     ticket_type="$1"
+    draw_count=0
     while true; do
         i=1
         while [ "$(getcolor 2260 830)" != "ffffffff" ]; do
@@ -266,6 +268,7 @@ click_ticket() {
 
         sleep 4.5
         log "Check result?"
+        (( draw_count++ ))
         for i in $(seq 22); do
             (input tap 1809 918 & sleep 0.25)
         done
@@ -275,10 +278,47 @@ click_ticket() {
 
 
 main() {
-    repeat="${1:-3}"
-    deploy_pattern="${2}"
-    fix_timezone="${3}"
+    while [ $# -gt 0 ]; do
+        key="$1"
 
+        case $key in
+            -c|--count)
+            repeat="$2"
+            shift
+            shift
+            ;;
+            
+            -d|--deploy)
+            shift
+            deploy_pattern=""
+            while [ "$1" -gt "0" ] ; do
+                deploy_pattern+="$1 "
+                shift
+            done
+            ;;
+            
+            -n|--limit)
+            clear_limit="$2"
+            shift
+            shift
+            ;;
+            
+            -z|--fix-timezone)
+            fix_timezone="yes"
+            shift
+            ;;
+            
+            -zs|--strict-timezone)
+            fix_timezone="strict"
+            shift
+            ;;
+            
+            *)
+            shift
+            ;;
+        esac
+    done
+    
     # Display help
     if [ -z "$repeat" ] || [ -z "$deploy_pattern" ]; then
         help "Missing arguments."
@@ -293,9 +333,8 @@ main() {
     reset_state_count=0
 
     log "===  Battle Cats  ==="
-    log "Repeat = $repeat"
+    log "Repeat = $repeat, limit = $clear_limit, timezone = $fix_timezone"
     log "Deploy pattern: $deploy_pattern"
-    log "Fix timezone: \"$fix_timezone\""
     
     if [ -n "$fix_timezone" ]; then
         log "Fix hour: $start_hour, current zone: $start_zone"
@@ -416,6 +455,13 @@ main() {
                 while [ "$(getcolor 1837 713)" != "$START_BATTLE_BUTTON_COLOR" ]; do
                     sleep 2
                 done
+            fi
+            
+            if [ -n "$clear_limit" ] && (( clear_limit > 0 )) && (( clear_count >= clear_limit )); then
+                log "Clear limit reached ($clear_count), quitting."
+                key 3 1  # Home
+                key 26 1  # Lock screen
+                return 0
             fi
         done
 

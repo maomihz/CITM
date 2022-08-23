@@ -1,3 +1,8 @@
+# Set datetime: service call alarm 2 i64 1661203400000
+# Set timezone: service call alarm 3 s16 GMT+13
+# Set auto date: settings put global auto_time 1
+
+
 getcolor() {
     w="${4:-2340}"
     h="${5:-1080}"
@@ -25,6 +30,10 @@ go_settings() {
 
 go_cats() {
     go 'jp.co.ponos.battlecats/.MyActivity' "$1"
+}
+
+go_home() {
+    am start -a android.intent.action.MAIN -c android.intent.category.HOME --activity-single-top --activity-no-animation
 }
 
 tap() {
@@ -78,7 +87,7 @@ DATE_Y_SPACING=105
 SWITCH_SCREEN_DELAY=0.5
 
 # Number of minutes to reset state
-RESET_STATE_INTERVAL=90  
+RESET_STATE_INTERVAL=90
 
 run_stage() {
     deploy_pattern="$1"
@@ -92,14 +101,14 @@ run_stage() {
                 # log "Stage ended."
                 return 0
             fi
-            
+
 
             if [ "$i" = "u" ]; then
                 # log "upgrade"
                 hold 167 907 100 0.1
                 continue
             fi
-            
+
             (( row = (i - 1) / 5 ))
             (( idx = (i - 1) % 5 ))
 
@@ -136,11 +145,11 @@ reset_time() {
     # Calculate date and time
     current="$(date +%s)"
     current_day="$(date +%e)"
-    
+
     (( before = current + DAY_OFFSET * 86400 ))
     before_day="$(date -d @$before +%e)"
     before_weekday="$(date -d @$before +%u)"
-    
+
     (( date_row = (before_day + 5 - before_weekday % 7) / 7 ))
     (( date_col = before_weekday % 7 ))
 
@@ -148,7 +157,7 @@ reset_time() {
     (( date_y = date_row * DATE_Y_SPACING + DATE_Y_OFFSET ))
 
     log "Date pos: $date_row, $date_col ($date_x, $date_y)"
-    
+
     unset zone_index
 
     if [ -n "$fix_timezone" ]; then
@@ -236,8 +245,23 @@ reset_state() {
 click_ticket() {
     ticket_type="$1"
     draw_count=0
+
+    log "Ticket Type = $ticket_type"
+
+    if [ "$ticket_type" = "rare" ]; then
+        click_rare_ticket
+        return 0
+    fi
+
+#     if [ "$ticket_type" != "silver" ]; then
+#         log "invalid ticket type!"
+#         return 1
+#     fi
+
+    # Click silver / event ticket
     while true; do
         i=1
+        # Click "OK"
         while [ "$(getcolor 2260 830)" != "ffffffff" ]; do
             ((i++ % 10 == 0)) && input tap 1809 918
             sleep 0.1
@@ -267,12 +291,19 @@ click_ticket() {
         fi
 
         sleep 4.5
-        log "Check result?"
         (( draw_count++ ))
+        log "Check result? #$draw_count"
         for i in $(seq 22); do
             (input tap 1809 918 & sleep 0.25)
         done
         sleep 0.6
+    done
+}
+
+click_rare_ticket() {
+    while true; do
+        input tap 1614 750
+        input tap 1637 873
     done
 }
 
@@ -287,7 +318,7 @@ main() {
             shift
             shift
             ;;
-            
+
             -d|--deploy)
             shift
             deploy_pattern=""
@@ -296,29 +327,29 @@ main() {
                 shift
             done
             ;;
-            
+
             -n|--limit)
             clear_limit="$2"
             shift
             shift
             ;;
-            
+
             -z|--fix-timezone)
             fix_timezone="yes"
             shift
             ;;
-            
+
             -zs|--strict-timezone)
             fix_timezone="strict"
             shift
             ;;
-            
+
             *)
             shift
             ;;
         esac
     done
-    
+
     # Display help
     if [ -z "$repeat" ] || [ -z "$deploy_pattern" ]; then
         help "Missing arguments."
@@ -326,20 +357,20 @@ main() {
 
     clear_count=0
     average=120
-    
+
     start_time="$(date +%s)"
     start_hour="$(date +%H)"
-    
+
     reset_state_count=0
 
     log "===  Battle Cats  ==="
     log "Repeat = $repeat, limit = $clear_limit, timezone = $fix_timezone"
     log "Deploy pattern: $deploy_pattern"
-    
+
     if [ -n "$fix_timezone" ]; then
         log "Fix hour: $start_hour, current zone: $start_zone"
     fi
-    
+
     # Kill date time settings
     am force-stop 'com.android.settings' >/dev/null
     log 'Kill com.android.settings'
@@ -456,7 +487,7 @@ main() {
                     sleep 2
                 done
             fi
-            
+
             if [ -n "$clear_limit" ] && (( clear_limit > 0 )) && (( clear_count >= clear_limit )); then
                 log "Clear limit reached ($clear_count), quitting."
                 key 3 1  # Home

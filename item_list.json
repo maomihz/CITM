@@ -616,5 +616,41 @@
     "itemCategory": 0,
     "amount": 100,
     "title": "Lucky Ticket G"
+  },
+  {
+    "itemId": 103,
+    "itemCategory": 0,
+    "amount": 100,
+    "title": ""
+  },
+  {
+    "itemId": 104,
+    "itemCategory": 0,
+    "amount": 100,
+    "title": ""
+  },
+  {
+    "itemId": 105,
+    "itemCategory": 0,
+    "amount": 100,
+    "title": "Leadership"
+  },
+  {
+    "itemId": 106,
+    "itemCategory": 0,
+    "amount": 100,
+    "title": ""
+  },
+  {
+    "itemId": 107,
+    "itemCategory": 0,
+    "amount": 100,
+    "title": ""
+  },
+  {
+    "itemId": 108,
+    "itemCategory": 0,
+    "amount": 100,
+    "title": ""
   }
 ]

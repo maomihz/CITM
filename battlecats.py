@@ -1,6 +1,7 @@
 import json
 import re
 import time
+from os.path import splitext
 
 # General config
 config = {
@@ -13,13 +14,19 @@ config = {
 # ===========================================
 class BattleCatsHack:
     def __init__(self, *files):
-        # Import cat and item list
-        self.all_list = []
-        for f in files:
-            self.all_list.extend(self._load_cat_list(f))
-
         # Index the items and cats
         self.item_index = {}
+
+        # Import cat and item list
+        self.all_list = []
+        count = 0
+        for f in files:
+            cat_list = self._load_cat_list(f)
+            list_name, ext = splitext(f)
+            for item in cat_list:
+                self.item_index[list_name + ":" + str(item['itemId'])] = count
+                count += 1
+            self.all_list.extend(cat_list)
 
         for i, item in enumerate(self.all_list):
             name = item['title'].lower()
@@ -116,7 +123,8 @@ def response(flow):
         flow.response.text = json.dumps({"status": True})
     if flow.request.path.startswith('/?action=getTime'):
         global time_diff
-        time_diff = (time_diff + 3600 * 6) % (3600 * 24)
+        time_diff = (time_diff + 60 * 360) % (60 * 720)
+        #time_diff = 0
         flow.response.text = json.dumps({
             "success": True,
             "timestamp": int(time.time() + time_diff)
@@ -127,4 +135,5 @@ if __name__ == "__main__":
     bc = BattleCatsHack("cat_list.json", 'item_list.json')
     bc.load_mailbox('mailbox.txt')
     print(bc.mailbox)
+    print(bc.item_index)
     # print(bc.item_index)

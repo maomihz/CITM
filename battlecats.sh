@@ -12,8 +12,8 @@ nohup sh cats.sh --fix-timezone -c 2 -d 3 7 6 9 10 6 7 9 10 6 7 9 10 6 7 9 10 6 
 # Speed cat +$1300 (152/hr)
 nohup sh cats.sh -c 8 -d 7 7 7 7 7 7 7 6 6 6 6 6 6 6 6 6 9 9 9 9 9 9 9 9 10 8 10 8 10 8 9 10 8 10 8 10 8 10 8 9
 
-# Speed cat blitz (105/hr 8,12,19)
-nohup sh cats.sh -zs -c 5 -d 6 8 9 10
+# Speed cat blitz (113/hr 8,12,19)
+nohup sh cats.sh -c 5 -zs -d 6 7 9 10 9 10 9 10
 
 # Sweet XP (120/hr+speed)
 # Mon   Tue  Wed   Thu   Fri

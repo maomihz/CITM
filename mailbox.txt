@@ -1,8 +1,17 @@
+item_list:105 100
+
 XP 80000000
+
+np 9900
 
 Cat food 15000
 
-Cat food 45000
+catseye legend rare 800
+
+catseye special 800
+catseye rare 800
+catseye super rare 800
+catseye uber rare 800
 
 Cat ticket 1000
 XP 10000000
@@ -13,7 +22,7 @@ crazed cow cat
 
 speed up 2000
 rich cat 2000
-treasure radar 200
+treasure radar 1000
 cat cpu 2000
 
 bricks 150
@@ -23,6 +32,7 @@ sprockets 150
 gold 150
 meteorite 150
 beast bones 150
+
 catamin A 5
 catamin B 5
 catamin C 15
@@ -36,4 +46,10 @@ purple catfruit 10
 yellow catfruit 10
 red catfruit 10
 blue catfruit 10
-epic catfruit 5
+epic catfruit 8
+
+green catfruit seed 15
+purple catfruit seed 15
+yellow catfruit seed 15
+red catfruit seed 15
+blue catfruit seed 15
